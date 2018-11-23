@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script>
+    var app = angular.module('app',[]);
+    app.factory('abcd',function($http){
+        return {
+            emp:function(){
+                return [
+                    {name:"aa",email:"aaa"},
+                    {name:"aa",email:"aaa"},
+                    {name:"aa",email:"aaa"}
+                ];
+            },
+            getUsers:function(){
+                return new Promise(function(resolve,reject){
+                    $http.get("https://jsonplaceholder.typicode.com/todos").then(function(res){
+                     resolve(res);
+                   })
+                }) 
+            },
+            getPosts:function()
+            {
+                return [
+                    {
+                        name:"india",
+                        likes:10,
+                        comments:20,
+                        commentsdata:[
+                            {
+                                name:"prabhu",
+                                comment:"this  is good"
+                            },
+                            {
+                                name:"ravi",
+                                comment:"this  is awesome"
+                            },
+                            {
+                                name:"shetty",
+                                comment:"this works"
+                            },
+                            {
+                                name:"ravi",
+                                comment:"this  is awesome"
+                            },
+                            {
+                                name:"shetty",
+                                comment:"this works"
+                            },
+                            {
+                                name:"ravi",
+                                comment:"this  is awesome"
+                            },
+                            {
+                                name:"shetty",
+                                comment:"this works"
+                            },
+                            {
+                                name:"ravi",
+                                comment:"this  is awesome"
+                            },
+                            {
+                                name:"shetty",
+                                comment:"this works"
+                            }
+                        ]
+                    },
+                    {
+                        name:"india the power",
+                        likes:50,
+                        comments:20,
+                        commentsdata:[
+                            {
+                                name:"prabhu",
+                                comment:"this  is good"
+                            },
+                            {
+                                name:"ravi",
+                                comment:"this  is awesome"
+                            },
+                            {
+                                name:"shetty",
+                                comment:"this works"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    })
+    app.controller('appc',function($scope,abcd){
+        abcd.getUsers().then(function(res){
+            console.log(res);
+        })
+
+        $scope.postsData = abcd.getPosts();
+    });
+</script>
+<body>
+
+<div ng-app="app" ng-controller='appc'>
+ 
+<p>Input something in the input box:</p>
+<p>Name: <input type="text" ng-model="name"></p>
+<p ng-bind="name"></p>
+
+<div class="data">
+    <div ng-repeat="d in postsData" style="width:300px;min-height:200px;background-color:grey;position:relative;">
+        <h1>{{d.name}}</h1>
+        <span>likes : {{d.likes}}</span> <span>comments : {{d.comments}}</span>
+        <p ng-repeat="cd in d.commentsdata" style="background-color:blue;color:white;padding:5px;border-bottom-right-radius:10px;">
+           <span>By {{cd.name}}</span><br>
+           <span>{{cd.comment}}</span>
+           
+        </p>
+    </div>
+</div>
+
+</div>
+
+</body>
+</html>
