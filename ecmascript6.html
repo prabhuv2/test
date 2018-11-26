@@ -1,0 +1,47 @@
+<html>
+    <head>
+      <title>Ecmascript6</title>
+    </head>
+    <body>
+
+        <script>
+           /* arrow function */
+           const BASEURL = 'https://xyz.com/api/v1';
+           
+           console.log(BASEURL);
+            (() => {
+              alert('hi');
+            })();
+          
+          setTimeout(()=>{
+              console.log("hi , executing after 3 seconds");
+          },3000);
+         
+         let bioData = {
+             name:"prabhu",
+             email:"xyz@xyz.com",
+             mobile:2323223, 
+         }
+
+         console.log(`Name:${bioData.name}
+         Email:${bioData.email}
+         Mobile:${bioData.mobile}`);
+
+        var getName = (name = 'prabhu') => {
+            let name1 = 'prabhu';
+
+            if(name == name1)
+            {
+                console.log("equal");
+            }
+            else{
+                console.log('not equal');
+            }
+        }
+
+        getName('pra');
+        getName();
+           
+        </script>
+    </body>
+</html>
